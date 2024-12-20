@@ -1,42 +1,43 @@
-import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState, useTransition } from "react";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [input, setInput] = useState("");
+  const [searchResults, setSearchResults] = useState<string[]>([]);
+  const [isPending, startTransition] = useTransition();
 
-  useEffect(() => {
-    console.log(`Effect ran with count: ${count}`);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setInput(value);
 
-    return () => {
-      console.log(`Cleaning up for count: ${count}`);
-    };
-  }, [count]); // 当 count 变化时，清理函数会被调用
+    // 使用 transition 延迟搜索结果更新
+    startTransition(() => {
+      const results = Array.from(
+        { length: 5000 },
+        (_, i) => `${value} - Result ${i + 1}`
+      );
+      setSearchResults(results);
+    });
+  };
 
   return (
-    <>
+    <div>
+      <input
+        type="text"
+        value={input}
+        onChange={handleChange}
+        placeholder="Type to search..."
+      />
+      {isPending && <p>Loading...</p>}
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h4>Results:</h4>
+        <ul>
+          {searchResults.map((result, index) => (
+            <li key={index}>{result}</li>
+          ))}
+        </ul>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   );
 }
 
