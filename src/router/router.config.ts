@@ -7,6 +7,8 @@ const routes: IRoute[] = [
   },
   {
     path: "/dashboard",
+    key: "dashboard",
+    name: "Dashboard",
     componentPath: "dashboard/index",
   },
   {

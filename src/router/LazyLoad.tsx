@@ -2,7 +2,7 @@
  * @Author: renchang.peng
  * @Date: 2024-12-23 14:53:54
  * @LastEditors: renchang.peng
- * @LastEditTime: 2024-12-23 17:52:12
+ * @LastEditTime: 2024-12-23 18:10:48
  * @FilePath: /react-ddr-new/src/router/LazyLoad.tsx
  * @Description: 动态导入
  */
@@ -14,6 +14,11 @@ const modules: Record<string, () => Promise<any>> = import.meta.glob(
   "../pages/**/*.tsx"
 );
 
+/**
+ * @description: 动态导入
+ * @param {string} path
+ * @return {*}
+ */
 const createLazyComponent = (path: string) => {
   const Component = lazy(modules[`../pages/${path}.tsx`]);
   return (

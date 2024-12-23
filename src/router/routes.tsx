@@ -2,7 +2,7 @@
  * @Author: renchang.peng
  * @Date: 2024-12-23 15:45:59
  * @LastEditors: renchang.peng
- * @LastEditTime: 2024-12-23 17:54:29
+ * @LastEditTime: 2024-12-23 18:12:33
  * @FilePath: /react-ddr-new/src/router/routes.tsx
  * @Description:
  */
@@ -33,6 +33,7 @@ type SetOptional<BaseType, Keys extends keyof BaseType> = Omit<BaseType, Keys> &
 interface BaseMenuItem {
   // 菜单key 同时也是菜单path
   // 菜单名称 同时也是面包屑名称
+  key: string;
   name: string;
   path: string;
   auth?: boolean;
