@@ -9,14 +9,14 @@ const DemoBar = () => {
   const config: BarConfig = {
     data: [
       {
-        count: 11,
-        category: "主机",
-        type: "linux",
+        count: 23,
+        category: "应用",
+        type: "结构化数据",
       },
       {
-        count: 11,
-        category: "主机",
-        type: "windows",
+        count: 30,
+        category: "应用",
+        type: "非结构化数据",
       },
       {
         count: 12,
