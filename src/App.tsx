@@ -9,15 +9,15 @@ const DemoBar = () => {
   const config: BarConfig = {
     data: [
       {
-        count: 45,
+        count: 63,
         category: "应用",
-        type: "结构化数据",
+        type: "总数",
       },
-      {
-        count: 18,
-        category: "应用",
-        type: "非结构化数据",
-      },
+      // {
+      //   count: 18,
+      //   category: "应用",
+      //   type: "非结构化数据",
+      // },
       {
         count: 12,
         category: "数据库",
