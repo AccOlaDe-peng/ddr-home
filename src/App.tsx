@@ -9,12 +9,12 @@ const DemoBar = () => {
   const config: BarConfig = {
     data: [
       {
-        count: 23,
+        count: 45,
         category: "应用",
         type: "结构化数据",
       },
       {
-        count: 30,
+        count: 18,
         category: "应用",
         type: "非结构化数据",
       },
@@ -34,7 +34,7 @@ const DemoBar = () => {
         type: "pgsql",
       },
       {
-        count: 10,
+        count: 18,
         category: "文件",
         type: "文件",
       },
