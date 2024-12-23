@@ -1,10 +1,13 @@
 import "./App.css";
 
-import React from "react";
 import { Bar, BarConfig } from "@ant-design/plots";
 import ReactECharts, { type EChartsOption } from "echarts-for-react";
 import { Card } from "antd";
 
+/**
+ * @description:
+ * @return {*}
+ */
 const DemoBar = () => {
   const config: BarConfig = {
     data: [

@@ -1,3 +1,11 @@
+/*
+ * @Author: renchang.peng
+ * @Date: 2024-12-20 12:05:07
+ * @LastEditors: renchang.peng
+ * @LastEditTime: 2024-12-23 15:49:57
+ * @FilePath: /react-ddr-new/vite.config.ts
+ * @Description:
+ */
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
@@ -28,7 +36,6 @@ export default defineConfig({
       },
     },
   },
-
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
