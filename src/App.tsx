@@ -48,7 +48,7 @@ const DemoBar = () => {
     stack: true,
     label: {
       position: "inside",
-      formatter: (_, a) => {
+      formatter: (_: any, a: any) => {
         return `${a.type}:${a.count}`;
       },
     },

@@ -9,14 +9,12 @@ import "./index.css";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ConfigProvider locale={zhCN}>
-      <>
-        {process.env.NODE_ENV === "development" ? (
-          <Inspector keys={["F4"]} />
-        ) : (
-          <Fragment />
-        )}
-        <App />
-      </>
+      {process.env.NODE_ENV === "development" ? (
+        <Inspector keys={["F4"]} />
+      ) : (
+        <Fragment />
+      )}
+      <App />
     </ConfigProvider>
   </StrictMode>
 );
