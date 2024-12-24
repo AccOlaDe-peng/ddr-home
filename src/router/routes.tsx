@@ -2,10 +2,11 @@
  * @Author: renchang.peng
  * @Date: 2024-12-23 15:45:59
  * @LastEditors: renchang.peng
- * @LastEditTime: 2024-12-24 09:31:43
+ * @LastEditTime: 2024-12-24 15:33:41
  * @FilePath: /react-ddr-new/src/router/routes.tsx
  * @Description:
  */
+import { createBrowserRouter } from "react-router-dom";
 import NoFound from "@/components/NoFound";
 import ErrorPage from "@/components/ErrorPage";
 import Layout from "@/components/Layout";
@@ -106,20 +107,25 @@ const layoutRoutesConfig = getLayoutRoutes(routes);
 
 const noLayoutRoutesConfig = getNoLayoutRoutes(routes);
 
-const reactRouter = [
+const reactRouter = createBrowserRouter(
+  [
+    {
+      element: <Layout />,
+      errorElement: <ErrorPage />,
+      children: generateRoutes(layoutRoutesConfig),
+    },
+    {
+      errorElement: <ErrorPage />,
+      children: generateRoutes(noLayoutRoutesConfig),
+    },
+    {
+      path: "*",
+      element: <NoFound />,
+    },
+  ],
   {
-    element: <Layout />,
-    errorElement: <ErrorPage />,
-    children: generateRoutes(layoutRoutesConfig),
-  },
-  {
-    errorElement: <ErrorPage />,
-    children: generateRoutes(noLayoutRoutesConfig),
-  },
-  {
-    path: "*",
-    element: <NoFound />,
-  },
-];
+    basename: import.meta.env.BASE_URL,
+  }
+);
 
 export default reactRouter;
