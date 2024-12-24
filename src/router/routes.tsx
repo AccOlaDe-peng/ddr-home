@@ -2,14 +2,19 @@
  * @Author: renchang.peng
  * @Date: 2024-12-23 15:45:59
  * @LastEditors: renchang.peng
- * @LastEditTime: 2024-12-23 18:12:33
+ * @LastEditTime: 2024-12-24 09:31:43
  * @FilePath: /react-ddr-new/src/router/routes.tsx
  * @Description:
  */
-import { createBrowserRouter } from "react-router-dom";
 import NoFound from "@/components/NoFound";
 import ErrorPage from "@/components/ErrorPage";
 import Layout from "@/components/Layout";
+import {
+  generateRoutes,
+  getLayoutRoutes,
+  getNoLayoutRoutes,
+} from "./router.helper";
+import routes from "./router.config";
 
 /**
  * @description:  合并两个类型
@@ -93,24 +98,28 @@ type MenuFoldRoute = SetOptional<
   children?: Array<MergeExclusive<MenuItemRoute, MenuFoldRoute>>;
 };
 
-type MenuRoute = MergeExclusive<MenuItemRoute, MenuFoldRoute>;
+export type MenuRoute = MergeExclusive<MenuItemRoute, MenuFoldRoute>;
 
 export type IRoute = MergeExclusive<CustomRoute, MenuRoute>;
 
-const reactRouter = createBrowserRouter([
+const layoutRoutesConfig = getLayoutRoutes(routes);
+
+const noLayoutRoutesConfig = getNoLayoutRoutes(routes);
+
+const reactRouter = [
   {
     element: <Layout />,
     errorElement: <ErrorPage />,
-    children: [],
+    children: generateRoutes(layoutRoutesConfig),
   },
   {
     errorElement: <ErrorPage />,
-    children: [],
+    children: generateRoutes(noLayoutRoutesConfig),
   },
   {
     path: "*",
     element: <NoFound />,
   },
-]);
+];
 
 export default reactRouter;

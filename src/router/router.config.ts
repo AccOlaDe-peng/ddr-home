@@ -3,7 +3,13 @@ import { IRoute } from "./routes";
 const routes: IRoute[] = [
   {
     path: "/",
-    redirect: "/dashboard",
+    redirect: "/test",
+  },
+  {
+    path: "/test",
+    name: "Test",
+    key: "test",
+    componentPath: "test/index",
   },
   {
     path: "/dashboard",

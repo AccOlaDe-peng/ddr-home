@@ -4,7 +4,7 @@ import { Inspector } from "react-dev-inspector";
 import { ConfigProvider } from "antd";
 import zhCN from "antd/locale/zh_CN";
 import App from "./App.tsx";
-import "./index.css";
+import "./index.scss";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

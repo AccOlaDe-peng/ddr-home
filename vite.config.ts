@@ -2,7 +2,7 @@
  * @Author: renchang.peng
  * @Date: 2024-12-20 12:05:07
  * @LastEditors: renchang.peng
- * @LastEditTime: 2024-12-23 15:49:57
+ * @LastEditTime: 2024-12-24 11:25:47
  * @FilePath: /react-ddr-new/vite.config.ts
  * @Description:
  */
@@ -10,10 +10,22 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import { inspectorServer } from "@react-dev-inspector/vite-plugin";
+import vitePluginImp from "vite-plugin-imp";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), inspectorServer()],
+  plugins: [
+    react(),
+    vitePluginImp({
+      libList: [
+        {
+          libName: "antd",
+          style: (name) => `antd/es/${name}/style`,
+        },
+      ],
+    }),
+    inspectorServer(),
+  ],
   server: {
     host: true,
     port: 3000,
