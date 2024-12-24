@@ -1,0 +1,14 @@
+.headerContainer {
+  background-image: url("/image/header-bg.png");
+  background-repeat: no-repeat;
+  .logo {
+    margin-left: 16px;
+    width: 120px;
+    height: 38px;
+    background-image: url("/image/logo_brand.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-right: 50% 50%;
+  }
+}

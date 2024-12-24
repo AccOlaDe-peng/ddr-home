@@ -2,12 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+tr,
+td,
+th,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+br,
+img,
+table,
+input,
+form,
+a,
+p,
+textarea {
   margin: 0;
-  display: flex;
-  min-width: 320px;
-  min-height: 100vh;
-  background-color: #fff;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "PingFangSC-Regular", "微软雅黑", sans-serif;
+  font-size: 16px;
 }
 
 :root {
