@@ -2,7 +2,7 @@
  * @Author: renchang.peng
  * @Date: 2024-12-23 16:01:10
  * @LastEditors: renchang.peng
- * @LastEditTime: 2024-12-23 16:02:17
+ * @LastEditTime: 2024-12-24 16:51:59
  * @FilePath: /react-ddr-new/src/components/ErrorPage.tsx
  * @Description:
  */
@@ -11,12 +11,7 @@ import React from "react";
 
 const ErrorPage: React.FC = () => {
   return (
-    <Row
-      justify="center"
-      align="middle"
-      wrap={false}
-      style={{ height: "100vh" }}
-    >
+    <Row justify="center" align="middle" wrap={false} className="h-screen">
       <Col>
         <Result
           status="error"
