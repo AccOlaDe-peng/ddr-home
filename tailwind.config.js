@@ -4,7 +4,10 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        "login-background": "linear-gradient(0deg, #fff, #efefef 40%, #eee)",
+        "login-background-all":
+          "linear-gradient(0deg, #fff, #efefef 40%, #eee)",
+        "login-background-top": "url(/image/login_bg_adms.png)",
+        logo: "url(/image/logo_brand.png)",
       },
     },
   },

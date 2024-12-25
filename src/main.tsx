@@ -8,7 +8,16 @@ import "./index.scss";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ConfigProvider locale={zhCN}>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: "#1976d2",
+          borderRadius: 4,
+          colorError: "#d92b35",
+        },
+      }}
+      locale={zhCN}
+    >
       {process.env.NODE_ENV === "development" ? (
         <Inspector keys={["F4"]} />
       ) : (

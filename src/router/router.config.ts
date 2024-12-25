@@ -19,7 +19,7 @@ const routes: IRoute[] = [
   },
   {
     path: "/login",
-    componentPath: "auth/Login",
+    componentPath: "auth/LoginLayout",
     layoutRender: false,
   },
 ];

@@ -1,9 +1,14 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
 import reactRouter from "./router/routes";
+import { App } from "antd";
 
-const App: React.FC = () => {
-  return <RouterProvider router={reactRouter} />;
+const MyApp: React.FC = () => {
+  return (
+    <App>
+      <RouterProvider router={reactRouter} />
+    </App>
+  );
 };
 
-export default App;
+export default MyApp;

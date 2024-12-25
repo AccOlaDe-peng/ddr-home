@@ -23,7 +23,7 @@ const createLazyComponent = (path: string) => {
   const Component = lazy(modules[`../pages/${path}.tsx`]);
   return (
     <Suspense fallback={<Loading />}>
-      <Component key={path} />;
+      <Component key={path} />
     </Suspense>
   );
 };
