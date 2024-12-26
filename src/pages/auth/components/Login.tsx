@@ -13,7 +13,7 @@ interface LoginProps {
  */
 const Login: React.FC<LoginProps> = ({ slickGoTo }) => {
   const forgetPassword = () => {
-    slickGoTo(LoginSteps.FORGOTPASSWORD);
+    slickGoTo(LoginSteps.FORGET_PASSWORD);
   };
 
   return (

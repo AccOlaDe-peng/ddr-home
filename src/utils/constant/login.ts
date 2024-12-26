@@ -1,6 +1,6 @@
 enum LoginSteps {
   LOGIN,
-  FORGOTPASSWORD,
+  FORGET_PASSWORD,
   RESETPASSWORD,
 }
 

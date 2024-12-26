@@ -2,13 +2,13 @@
  * @Author: renchang.peng
  * @Date: 2024-12-23 14:53:54
  * @LastEditors: renchang.peng
- * @LastEditTime: 2024-12-23 18:10:48
+ * @LastEditTime: 2024-12-26 09:56:07
  * @FilePath: /react-ddr-new/src/router/LazyLoad.tsx
  * @Description: 动态导入
  */
 
 import { lazy, Suspense } from "react";
-import Loading from "../components/Loading";
+import Loading from "@/components/Loading";
 
 const modules: Record<string, () => Promise<any>> = import.meta.glob(
   "../pages/**/*.tsx"

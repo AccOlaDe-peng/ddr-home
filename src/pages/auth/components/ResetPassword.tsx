@@ -13,7 +13,7 @@ interface ResetPasswordProps {
  */
 const ResetPassword: React.FC<ResetPasswordProps> = ({ slickGoTo }) => {
   const back = () => {
-    slickGoTo(LoginSteps.FORGOTPASSWORD);
+    slickGoTo(LoginSteps.FORGET_PASSWORD);
   };
   const resetPassword = () => {
     // slickGoTo(LoginSteps.RESETPASSWORD);
