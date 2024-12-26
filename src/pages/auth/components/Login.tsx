@@ -1,9 +1,15 @@
 import React from "react";
 import { Button, Flex, Form, Input } from "antd";
 import { LoginSteps } from "@/utils/constant/login";
+import { useNavigate } from "react-router-dom";
 
 interface LoginProps {
   slickGoTo: (slide: LoginSteps) => void;
+}
+
+interface FormValues {
+  username: string;
+  password: string;
 }
 
 /**
@@ -12,12 +18,18 @@ interface LoginProps {
  * @return {*}
  */
 const Login: React.FC<LoginProps> = ({ slickGoTo }) => {
+  const navigate = useNavigate();
   const forgetPassword = () => {
     slickGoTo(LoginSteps.FORGET_PASSWORD);
   };
 
+  const handleSubmit = async (values: FormValues) => {
+    console.log("Received values of form: ", values);
+    navigate("/test");
+  };
+
   return (
-    <Form className="px-6 pt-5 mt-4">
+    <Form<FormValues> onFinish={handleSubmit} className="px-6 pt-5 mt-4">
       <Form.Item
         name="username"
         rules={[{ required: true, message: "请填写用户名!" }]}
@@ -37,7 +49,7 @@ const Login: React.FC<LoginProps> = ({ slickGoTo }) => {
           </Button>
         </Form.Item>
         <Form.Item>
-          <Button danger type="primary">
+          <Button danger type="primary" htmlType="submit">
             登录
           </Button>
         </Form.Item>
