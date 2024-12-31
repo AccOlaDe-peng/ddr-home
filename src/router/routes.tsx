@@ -2,7 +2,7 @@
  * @Author: renchang.peng
  * @Date: 2024-12-23 15:45:59
  * @LastEditors: renchang.peng
- * @LastEditTime: 2024-12-24 15:33:41
+ * @LastEditTime: 2024-12-31 16:53:54
  * @FilePath: /react-ddr-new/src/router/routes.tsx
  * @Description:
  */
@@ -103,7 +103,7 @@ export type MenuRoute = MergeExclusive<MenuItemRoute, MenuFoldRoute>;
 
 export type IRoute = MergeExclusive<CustomRoute, MenuRoute>;
 
-const layoutRoutesConfig = getLayoutRoutes(routes);
+export const layoutRoutesConfig = getLayoutRoutes(routes);
 
 const noLayoutRoutesConfig = getNoLayoutRoutes(routes);
 
