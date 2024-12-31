@@ -1,4 +1,3 @@
-import { Bar, BarConfig } from "@ant-design/plots";
 import ReactECharts, { type EChartsOption } from "echarts-for-react";
 import { Card } from "antd";
 
@@ -6,69 +5,69 @@ import { Card } from "antd";
  * @description:
  * @return {*}
  */
-const DemoBar = () => {
-  const config: BarConfig = {
-    data: [
-      {
-        count: 63,
-        category: "应用",
-        type: "总数",
-      },
-      // {
-      //   count: 18,
-      //   category: "应用",
-      //   type: "非结构化数据",
-      // },
-      {
-        count: 12,
-        category: "数据库",
-        type: "mysql",
-      },
-      {
-        count: 22,
-        category: "数据库",
-        type: "oracle",
-      },
-      {
-        count: 11,
-        category: "数据库",
-        type: "pgsql",
-      },
-      {
-        count: 18,
-        category: "文件",
-        type: "文件",
-      },
-    ],
-    width: 400,
-    height: 250,
-    xField: "category",
-    yField: "count",
-    colorField: "type",
-    legend: false,
-    stack: true,
-    label: {
-      position: "inside",
-      formatter: (_: any, a: any) => {
-        return `${a.type}:${a.count}`;
-      },
-    },
-    // sort: {
-    //   reverse: true,
-    //   by: "y",
-    // },
-    // axis: {
-    //   y: { labelFormatter: "~s" },
-    //   x: {
-    //     labelSpacing: 4,
-    //     style: {
-    //       labelTransform: "rotate(90)",
-    //     },
-    //   },
-    // },
-  };
-  return <Bar {...config} />;
-};
+// const DemoBar = () => {
+//   const config: BarConfig = {
+//     data: [
+//       {
+//         count: 63,
+//         category: "应用",
+//         type: "总数",
+//       },
+//       // {
+//       //   count: 18,
+//       //   category: "应用",
+//       //   type: "非结构化数据",
+//       // },
+//       {
+//         count: 12,
+//         category: "数据库",
+//         type: "mysql",
+//       },
+//       {
+//         count: 22,
+//         category: "数据库",
+//         type: "oracle",
+//       },
+//       {
+//         count: 11,
+//         category: "数据库",
+//         type: "pgsql",
+//       },
+//       {
+//         count: 18,
+//         category: "文件",
+//         type: "文件",
+//       },
+//     ],
+//     width: 400,
+//     height: 250,
+//     xField: "category",
+//     yField: "count",
+//     colorField: "type",
+//     legend: false,
+//     stack: true,
+//     label: {
+//       position: "inside",
+//       formatter: (_: any, a: any) => {
+//         return `${a.type}:${a.count}`;
+//       },
+//     },
+//     // sort: {
+//     //   reverse: true,
+//     //   by: "y",
+//     // },
+//     // axis: {
+//     //   y: { labelFormatter: "~s" },
+//     //   x: {
+//     //     labelSpacing: 4,
+//     //     style: {
+//     //       labelTransform: "rotate(90)",
+//     //     },
+//     //   },
+//     // },
+//   };
+//   return <Bar {...config} />;
+// };
 
 const drsOption: EChartsOption = {
   title: {
@@ -278,9 +277,7 @@ const frsOption: EChartsOption = {
 function Test() {
   return (
     <div style={{ display: "flex" }}>
-      <Card title="检测对象">
-        <DemoBar />
-      </Card>
+      <Card title="检测对象">{/* <DemoBar /> */}</Card>
       <Card title="数据表检测统计">
         <ReactECharts
           option={drsOption}

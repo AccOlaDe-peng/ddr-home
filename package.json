@@ -10,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ant-design/plots": "^2.3.2",
     "@reactuses/core": "^6.0.0",
     "antd": "^5.22.6",
     "axios": "^1.7.9",
