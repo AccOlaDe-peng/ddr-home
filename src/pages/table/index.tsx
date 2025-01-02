@@ -15,7 +15,7 @@ const Table: React.FC = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      width: 200,
+      width: 300,
     },
     {
       title: "Age",
@@ -27,7 +27,6 @@ const Table: React.FC = () => {
       title: "Address",
       dataIndex: "address",
       key: "address",
-      width: 300,
     },
   ];
 

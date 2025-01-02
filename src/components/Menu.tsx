@@ -1,12 +1,13 @@
 import React from "react";
 import { IRoute, MenuRoute } from "@/router/routes";
 import { MenuItem } from "@/types/menu";
-import { isMenuKeyFormStore } from "@/utils/tool/auth";
+// import { isMenuKeyFormStore } from "@/utils/tool/auth";
 import { useSetState } from "@reactuses/core";
 import { layoutRoutesConfig as routes } from "@/router/routes";
 import { useNavigate } from "react-router-dom";
-import type { ItemType } from "antd/es/menu/interface";
-import { Menu } from "antd";
+import { Button } from "antd";
+import { ItemType } from "antd/es/menu/interface";
+import { has, isObject } from "lodash";
 
 interface State {
   selectedKey: string;
@@ -14,8 +15,8 @@ interface State {
 
 const LayoutMenu: React.FC = () => {
   const navigate = useNavigate();
-  //   const location = useLocation();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [state, setState] = useSetState<State>({
     selectedKey: "",
   });
@@ -26,7 +27,10 @@ const LayoutMenu: React.FC = () => {
     const menuData: IRoute[] = [];
     routes.forEach((route) => {
       const _route = { ...route };
-      if (_route.menuRender !== false && isMenuKeyFormStore(menu, route.key!)) {
+      if (
+        _route.menuRender !== false
+        //  && isMenuKeyFormStore(menu, route.key!)
+      ) {
         if (_route.children) {
           _route.children = getMenuData(_route.children) as MenuRoute[];
         }
@@ -43,18 +47,28 @@ const LayoutMenu: React.FC = () => {
   //       selectedKey,
   //     }));
   //   };
+  const menuConfig = generateMenuItems(menuData);
 
   return (
-    <Menu
-      theme="dark"
-      mode="inline"
-      selectedKeys={[state.selectedKey ?? ""]}
-      onClick={({ key }) => {
-        setState({ selectedKey: key });
-        navigate(key);
-      }}
-      items={generateMenuItems(menuData)}
-    />
+    <div className="flex">
+      {menuConfig
+        .filter((item) => item?.key !== "/")
+        .map((item) => {
+          const key = item?.key;
+          if (isObject(item) && has(item, "label")) {
+            const label = item.label as React.ReactNode;
+            return (
+              <Button
+                key={key}
+                onClick={() => typeof key === "string" && navigate(key)}
+              >
+                {label}
+              </Button>
+            );
+          }
+          return null;
+        })}
+    </div>
   );
 };
 
@@ -73,7 +87,6 @@ const generateMenuItems = (data: IRoute[]): ItemType[] => {
     menu.push({
       key: item.path,
       label: item.name,
-      //   icon: <IconComponent type={item.icon} />,
       children,
     } as ItemType);
   });

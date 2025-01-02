@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Table } from "antd";
 import type { ColumnsType, TableProps } from "antd/es/table";
 import { Resizable } from "react-resizable";
+import styles from "./style.module.scss";
 import "react-resizable/css/styles.css";
 
 const ResizableTitle = ({ onResize, width, ...restProps }: any) => {
@@ -19,7 +20,7 @@ const ResizableTitle = ({ onResize, width, ...restProps }: any) => {
       height={0}
       handle={
         <span
-          // className={styles.reactResizableHandle}
+          className={styles.reactResizableHandle}
           onClick={(e) => {
             e.stopPropagation();
           }}
