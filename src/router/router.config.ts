@@ -18,6 +18,12 @@ const routes: IRoute[] = [
     componentPath: "dashboard/index",
   },
   {
+    path: "/table",
+    key: "table",
+    name: "表格",
+    componentPath: "table/index",
+  },
+  {
     path: "/login",
     componentPath: "auth/LoginLayout",
     layoutRender: false,
