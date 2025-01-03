@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Table } from "antd";
 import type { ColumnsType, TableProps } from "antd/es/table";
 import { Resizable } from "react-resizable";
 import styles from "./style.module.scss";
 import "react-resizable/css/styles.css";
 
-const ResizableTitle = ({ onResize, width, ...restProps }: any) => {
+const ResizableTitle: React.FC = ({ onResize, width, ...restProps }: any) => {
   if (!width) {
     return <th {...restProps} />;
   }
@@ -18,6 +18,8 @@ const ResizableTitle = ({ onResize, width, ...restProps }: any) => {
     <Resizable
       width={width}
       height={0}
+      minConstraints={[10, 0]}
+      maxConstraints={[500, 0]}
       handle={
         <span
           className={styles.reactResizableHandle}
@@ -46,6 +48,11 @@ type extendsProps = {
 
 type ResizableTableProps = TableProps<any> & extendsProps;
 
+type HandleResize = (
+  event: React.SyntheticEvent,
+  data: { size: { width: number } }
+) => void;
+
 const ResizableTable: React.FC<ResizableTableProps> = ({
   columns,
   ...props
@@ -53,29 +60,25 @@ const ResizableTable: React.FC<ResizableTableProps> = ({
   const [cols, setCols] = useState<ColumnsType<any>>(columns);
 
   // 调整列宽时触发
-  const handleResize =
-    (index: number) =>
-    (
-      _: React.MouseEvent<HTMLDivElement>,
-      { size }: { size: { width: number } }
-    ) => {
-      setCols((prevColumns) => {
-        const nextColumns = [...prevColumns];
-        nextColumns[index] = {
-          ...nextColumns[index],
-          width: size.width,
-        };
-        return nextColumns;
-      });
+  const handleResize: (index: number) => HandleResize =
+    (index) =>
+    (_, { size }) => {
+      setCols((prevColumns) =>
+        prevColumns.map((col, colIndex) =>
+          colIndex === index ? { ...col, width: size.width } : col
+        )
+      );
     };
 
-  const colsArray: ColumnsType<any> = cols.map((col, index) => ({
-    ...col,
-    onHeaderCell: (column: any) => ({
-      width: column.width,
-      onResize: handleResize(index),
-    }),
-  }));
+  const colsArray: any = useMemo(() => {
+    return cols.map((col, index) => ({
+      ...col,
+      onHeaderCell: (column: any) => ({
+        width: column.width,
+        onResize: handleResize(index),
+      }),
+    }));
+  }, [cols]);
 
   return (
     <Table
