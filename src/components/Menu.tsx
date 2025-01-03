@@ -22,6 +22,11 @@ const LayoutMenu: React.FC = () => {
 
   const menu: Array<MenuItem> = [];
 
+  /**
+   * @description: 获取菜单数据
+   * @param {IRoute} routes
+   * @return {*}
+   */
   const getMenuData = (routes: IRoute[]) => {
     return routes.reduce((menuData: IRoute[], route) => {
       if (route.menuRender !== false) {
@@ -87,11 +92,21 @@ const LayoutMenu: React.FC = () => {
 
   const menuConfig = generateMenuItems(menuData);
 
+  /**
+   * @description: 菜单跳转
+   * @param {string} key
+   * @return {*}
+   */
   const handleSkipTo = (key: string) => {
     setState({ selectedKey: key });
     navigate(key);
   };
 
+  /**
+   * @description: 菜单按钮
+   * @param {ItemType} item
+   * @return {*}
+   */
   const MenuButton = (item: ItemType) => {
     const key = item?.key;
     if (isObject(item) && has(item, "label")) {
