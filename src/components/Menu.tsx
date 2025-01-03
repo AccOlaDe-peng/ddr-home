@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { IRoute, MenuRoute } from "@/router/routes";
 import { MenuItem } from "@/types/menu";
 import { Button, Flex } from "antd";
@@ -59,7 +59,7 @@ const LayoutMenu: React.FC = () => {
     window
   );
 
-  const menuData: IRoute[] = React.useMemo(() => getMenuData(routes), [menu]);
+  const menuData: IRoute[] = useMemo(() => getMenuData(routes), [menu]);
 
   /**
    * @description: 更新菜单状态

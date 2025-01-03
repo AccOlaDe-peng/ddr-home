@@ -5,6 +5,11 @@ import { Resizable } from "react-resizable";
 import styles from "./style.module.scss";
 import "react-resizable/css/styles.css";
 
+/**
+ * @description: 表格可调整列宽的组件
+ * @param {any} param1
+ * @return {*}
+ */
 const ResizableTitle: React.FC = ({ onResize, width, ...restProps }: any) => {
   if (!width) {
     return <th {...restProps} />;
@@ -53,6 +58,10 @@ type HandleResize = (
   data: { size: { width: number } }
 ) => void;
 
+/**
+ * @description: 表格可调整列宽的组件
+ * @return {*}
+ */
 const ResizableTable: React.FC<ResizableTableProps> = ({
   columns,
   ...props
@@ -70,6 +79,11 @@ const ResizableTable: React.FC<ResizableTableProps> = ({
       );
     };
 
+  /**
+   * @description: 表格列宽调整
+   * @param {*} useMemo
+   * @return {*}
+   */
   const colsArray: any = useMemo(() => {
     return cols.map((col, index) => ({
       ...col,
