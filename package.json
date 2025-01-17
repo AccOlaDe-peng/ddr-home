@@ -19,6 +19,7 @@
     "immer": "^10.1.1",
     "lodash": "^4.17.21",
     "react": "^19.0.0",
+    "react-antd-column-resize": "^1.0.3",
     "react-dom": "^19.0.0",
     "react-resizable": "^3.0.5",
     "react-router-dom": "^7.1.0",
