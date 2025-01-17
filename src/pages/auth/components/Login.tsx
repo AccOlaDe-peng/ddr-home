@@ -24,7 +24,6 @@ const Login: React.FC<LoginProps> = ({ slickGoTo }) => {
   };
 
   const handleSubmit = async (values: FormValues) => {
-    console.log("Received values of form: ", values);
     navigate("/test");
   };
 

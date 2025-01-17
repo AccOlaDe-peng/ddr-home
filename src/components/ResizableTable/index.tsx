@@ -1,97 +1,74 @@
-import {
-  useReactTable,
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  getPaginationRowModel,
-} from "@tanstack/react-table";
-import styles from "./style.module.scss";
+import React from "react";
+import { Button, Divider, Table } from "antd";
+import { useAntdColumnResize } from "react-antd-column-resize";
+import type { ColumnsType } from "antd/es/table";
 
-interface TableProps<TData> {
-  data: TData[];
-  columns: ColumnDef<TData, any>[];
-  pageSize?: number; // 默认每页行数
-  onRowClick?: (row: TData) => void; // 行点击事件回调
-}
-
-const Table = <TData extends object>({
-  data,
-  columns,
-  pageSize = 10,
-  onRowClick,
-}: TableProps<TData>) => {
-  const table = useReactTable({
-    data,
-    columns,
-    initialState: {
-      pagination: { pageSize },
+const App: React.FC = () => {
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      width: 200,
+      align: "center",
     },
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-  });
+    {
+      title: "Age",
+      dataIndex: "age",
+      key: "age",
+      width: 100,
+    },
+    {
+      title: "Address",
+      dataIndex: "address",
+      key: "address",
+      width: 300,
+    },
+    {
+      title: "phone",
+      dataIndex: "phone",
+      key: "phone",
+      fixed: "right",
+      //width:"必须有一项不设置宽度，不然会造成拖动异常"
+      //width:"必须有一项不设置宽度，不然会造成拖动异常"
+      //width:"必须有一项不设置宽度，不然会造成拖动异常"
+    },
+  ];
+
+  const data = [
+    {
+      key: "1",
+      name: "John Doe",
+      age: 32,
+      address: "123 Street, City",
+      phone: "1588553336",
+    },
+    {
+      key: "2",
+      name: "Jane Smith",
+      age: 28,
+      address: "456 Road, Town",
+      phone: "1588553336",
+    },
+  ];
+  const { resizableColumns, components, tableWidth, resetColumns } =
+    useAntdColumnResize(() => {
+      return { columns, minWidth: 100 };
+    }, []);
 
   return (
-    <div className={styles.resizableTable}>
-      <table className="table-auto border-collapse w-full border border-gray-300">
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th
-                  key={header.id}
-                  className="border border-gray-300 px-4 py-2 text-left"
-                >
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr
-              key={row.id}
-              className="cursor-pointer hover:bg-gray-100"
-              onClick={() => onRowClick?.(row.original)}
-            >
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="border border-gray-300 px-4 py-2">
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {/* 分页控件 */}
-      <div className="flex items-center justify-between mt-4">
-        <button
-          className="px-2 py-1 border rounded disabled:opacity-50"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          上一页
-        </button>
-        <span>
-          第 {table.getState().pagination.pageIndex + 1} 页，共{" "}
-          {table.getPageCount()} 页
-        </span>
-        <button
-          className="px-2 py-1 border rounded disabled:opacity-50"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          下一页
-        </button>
-      </div>
+    <div>
+      <Button onClick={resetColumns}>重置Columns</Button>
+      <Divider />
+      <Table
+        columns={resizableColumns as ColumnsType<any>}
+        dataSource={data}
+        components={components}
+        bordered
+        scroll={{ x: tableWidth }}
+      />
     </div>
   );
 };
 
-export default Table;
+export default App;

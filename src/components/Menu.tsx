@@ -53,7 +53,6 @@ const LayoutMenu: React.FC = () => {
     "popstate",
     () => {
       const menuState = handleMenuState(location);
-      console.log(menuState);
       updateMenuState(menuState);
     },
     window
@@ -84,7 +83,6 @@ const LayoutMenu: React.FC = () => {
       return;
     }
     const menuState = handleMenuState(location);
-    console.log(menuState);
     if (menuState.selectedKey !== state.selectedKey) {
       updateMenuState(menuState);
     }
